@@ -140,7 +140,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
   -- SUPER + FUNCTION KEYS
 
-  [ ((modMask, xK_e), spawn $ "atom" )
+  [ ((modMask, xK_e), spawn $ "st -e vifm" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
   , ((modMask, xK_h), spawn $ "st -e htop" )
   , ((modMask, xK_m), spawn $ "st -e cmus" )
@@ -168,7 +168,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- SUPER + SHIFT KEYS
 
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
-  , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#c91a1a' -nf '#fea63c' -sb '#fea63c' -sf '#c91a1a' -fn 'NotoMonoRegular:bold:pixelsize=14'")
+  , ((modMask, xK_d), spawn $ "dmenu_run -i -nb '#191919' -nf '#6790eb' -sb '#6790eb' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=22'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
   , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
