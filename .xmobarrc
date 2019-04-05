@@ -57,6 +57,6 @@ Config {
 
 	  , Run Com "/bin/bash" ["-c",  "XMKupdate"] "update" 600
 
-      , Run Date                                "%Y-%m-%d  %H:%M" "date" 60]
+      , Run Date                                "%Y-%m-%d  %H:%M" "date" 60] 
 
 }

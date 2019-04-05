@@ -60,8 +60,8 @@ mydefaults = def {
         , startupHook         = myStartupHook
         , manageHook          = myManageHook
         , handleEventHook     = fullscreenEventHook <+> docksEventHook <+> minimizeEventHook
-        } 
-        
+        }
+
 -- Autostart
 myStartupHook = do
     spawn "$HOME/.xmonad/scripts/autostart.sh"
@@ -80,13 +80,13 @@ myLayoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ gap
                $ avoidStruts
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)
                $ smartBorders
-               $ tiled ||| Grid ||| spiral (6/7) ||| ThreeColMid 1 (3/100) (1/2) ||| noBorders Full  
+               $ tiled ||| Grid ||| spiral (6/7) ||| ThreeColMid 1 (3/100) (1/2) ||| noBorders Full
                     where
                     tiled   = Tall nmaster delta ratio
                     nmaster = 1
                     delta   = 3/100
                     ratio   = 1/2
-                
+
 
 
 --WORKSPACES
@@ -110,7 +110,7 @@ myManageHook = composeAll . concat $
     , [className =? c --> doShift (myWorkspaces !! 1) <+> viewShift (myWorkspaces !! 1)        | c <- my2Shifts]
     , [className =? c --> doShift (myWorkspaces !! 2) <+> viewShift (myWorkspaces !! 2)        | c <- my3Shifts]
     , [className =? c --> doShift (myWorkspaces !! 3) <+> viewShift (myWorkspaces !! 3)        | c <- my4Shifts]
-    , [className =? c --> doShift (myWorkspaces !! 4) <+> viewShift (myWorkspaces !! 4)        | c <- my5Shifts]
+    , [className =? c --> doShift (myWorkspaces !! 4) <+> viewShift (myWorkspaces !! 4)        | c <- my5Shifts] 
     , [className =? c --> doShift (myWorkspaces !! 5) <+> viewShift (myWorkspaces !! 5)        | c <- my6Shifts]
     , [className =? c --> doShift (myWorkspaces !! 6) <+> viewShift (myWorkspaces !! 6)        | c <- my7Shifts]
     , [className =? c --> doShift (myWorkspaces !! 7) <+> viewShift (myWorkspaces !! 7)        | c <- my8Shifts]
@@ -123,15 +123,15 @@ myManageHook = composeAll . concat $
     myTFloats = ["Downloads", "Save As..."]
     myRFloats = []
     myIgnores = ["desktop_window"]
-    my1Shifts = ["Firefox", "Navigator", "Chromium"]
-    my2Shifts = ["Subl3"]
+    my1Shifts = ["Chromium", "Vivaldi-stable", "Firefox"]
+    my2Shifts = ["Subl3", "subl3"]
     my3Shifts = ["Inkscape"]
     my4Shifts = ["discord"]
     my5Shifts = ["Gimp", "feh"]
     my6Shifts = ["vlc", "mpv"]
     my7Shifts = ["Virtualbox"]
     my8Shifts = ["Thunar"]
-    my9Shifts = []
+    my9Shifts = ["viber"]
     my10Shifts = ["spotify"]
 
 -- keys config
@@ -140,20 +140,20 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   ----------------------------------------------------------------------
   -- SUPER + FUNCTION KEYS
 
-  [ ((modMask, xK_e), spawn $ "st -e vifm" )
+  [ ((modMask, xK_d), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=17'" )
   , ((modMask, xK_f), sendMessage $ Toggle NBFULL)
-  , ((modMask, xK_h), spawn $ "st -e htop" )
-  , ((modMask, xK_m), spawn $ "st -e cmus" )
-  , ((modMask, xK_r), spawn $ "st -e ranger" )
-  , ((modMask, xK_t), spawn $ "st" )
-  , ((modMask, xK_v), spawn $ "subl3" )
-  , ((modMask, xK_w), spawn $ "firefox" )
+  , ((modMask, xK_h), spawn $ "urxvt 'htop task manager' -e htop" )
+  , ((modMask, xK_m), spawn $ "cmus" )
+  , ((modMask, xK_r), spawn $ "rofi-theme-selector" )
   , ((modMask, xK_q), kill)
+  , ((modMask, xK_v), spawn $ "pavucontrol" )
+  , ((modMask, xK_w), spawn $ "firefox" )
+  , ((modMask, xK_y), spawn $ "polybar-msg cmd toggle" )
   , ((modMask, xK_x), spawn $ "oblogout" )
   , ((modMask, xK_Escape), spawn $ "xkill" )
   , ((modMask, xK_Return), spawn $ "st" )
-  , ((modMask, xK_F1), spawn $ "Firefox" )
-  , ((modMask, xK_F2), spawn $ "atom" )
+  , ((modMask, xK_F1), spawn $ "vivaldi-stable" )
+  , ((modMask, xK_F2), spawn $ "subl3" )
   , ((modMask, xK_F3), spawn $ "inkscape" )
   , ((modMask, xK_F4), spawn $ "gimp" )
   , ((modMask, xK_F5), spawn $ "meld" )
@@ -168,7 +168,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- SUPER + SHIFT KEYS
 
   , ((modMask .|. shiftMask , xK_Return ), spawn $ "thunar")
-  , ((modMask, xK_d), spawn $ "dmenu_run -i -nb '#191919' -nf '#6790eb' -sb '#6790eb' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=22'")
+  , ((modMask .|. shiftMask , xK_d ), spawn $ "dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'")
   , ((modMask .|. shiftMask , xK_r ), spawn $ "xmonad --recompile && xmonad --restart")
   , ((modMask .|. shiftMask , xK_q ), kill)
   , ((modMask .|. shiftMask , xK_x ), io (exitWith ExitSuccess))
@@ -244,15 +244,15 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   -- Decrease brightness
   , ((0, xF86XK_MonBrightnessDown), spawn $ "xbacklight -dec 5")
 
-  , ((0, xF86XK_AudioPlay), spawn $ "mpc toggle")
-  , ((0, xF86XK_AudioNext), spawn $ "mpc next")
-  , ((0, xF86XK_AudioPrev), spawn $ "mpc prev")
-  , ((0, xF86XK_AudioStop), spawn $ "mpc stop")
+--  , ((0, xF86XK_AudioPlay), spawn $ "mpc toggle")
+--  , ((0, xF86XK_AudioNext), spawn $ "mpc next")
+--  , ((0, xF86XK_AudioPrev), spawn $ "mpc prev")
+--  , ((0, xF86XK_AudioStop), spawn $ "mpc stop")
 
---  , ((0, xF86XK_AudioPlay), spawn $ "playerctl play-pause")
---  , ((0, xF86XK_AudioNext), spawn $ "playerctl next")
---  , ((0, xF86XK_AudioPrev), spawn $ "playerctl previous")
---  , ((0, xF86XK_AudioStop), spawn $ "playerctl stop")
+  , ((0, xF86XK_AudioPlay), spawn $ "playerctl play-pause")
+  , ((0, xF86XK_AudioNext), spawn $ "playerctl next")
+  , ((0, xF86XK_AudioPrev), spawn $ "playerctl previous")
+  , ((0, xF86XK_AudioStop), spawn $ "playerctl stop")
 
 
   --------------------------------------------------------------------
@@ -352,7 +352,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 --XMOBAR
 main = do
-            
+
         xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.xmobarrc" -- xmobar monitor 1
         xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.xmobarrc" -- xmobar monitor 2
         xmonad $ ewmh $ mydefaults {
@@ -370,8 +370,8 @@ main = do
            "Spacing Tall"                 -> "<fn=1>Tall</fn>"
            "Spacing Grid"                 -> "<fn=1>Grid</fn>"
            "Spacing Spiral"               -> "<fn=1>spiral</fn>"
-           "Spacing ThreeCol"             -> "<fn=1>ThreeColMid</fn>" 
-           "Spacing Full"                 -> "<fn=1>Full</fn>"         
+           "Spacing ThreeCol"             -> "<fn=1>ThreeColMid</fn>"
+           "Spacing Full"                 -> "<fn=1>Full</fn>"
            _                                         -> x )
  }
 }
