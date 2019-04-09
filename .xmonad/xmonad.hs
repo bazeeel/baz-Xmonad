@@ -76,7 +76,7 @@ myVisibleWSColor = "#aaaaaa" -- color of inactive workspace
 myUrgentWSColor = "#c91a1a" -- color of workspace with 'urgent' window
 myHiddenNoWindowsWSColor = "white"
 
-myLayoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ gaps [(U,35), (D,5), (R,5), (L,5)]
+myLayoutHook = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ gaps [(U,40), (D,10), (R,10), (L,10)]
                $ avoidStruts
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)
                $ smartBorders
@@ -100,7 +100,7 @@ myWorkspaces = clickable . (map xmobarEscape) $ ["\61612","\61899","\61947","\61
                clickable l = [ "<action=xdotool key super+" ++ show (n) ++ ">" ++ ws ++ "</action>" | (i,ws) <- zip [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] l, let n = i ]
 
 -- window manipulations
-myManageHook = composeAll . concat $
+myManageHook = composeAll . concat $ 
     [ [isDialog --> doCenterFloat]
     , [className =? c --> doCenterFloat | c <- myCFloats]
     , [title =? t --> doFloat | t <- myTFloats]
